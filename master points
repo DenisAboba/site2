@@ -1,0 +1,33 @@
+print("Введите результаты игры:")
+res = input()
+print("Role: ")
+rl = input()
+print("K D A:")
+k, d, a = map(int, input().split())
+print ("KP:")
+kp = float(input())
+gmp = float(input("Gold per minute: "))
+mc = float(input("Map Control: "))
+hg = int(input("HighLights: "))
+MP=0
+if res == "win":
+    MP +=15
+else:
+    MP -=10
+if rl=="support":
+    MP += 0.55 * k - d + 0.75 * a
+else:
+    MP += k*0.8- d + 0.5 * a
+if kp >= 0.5 and d*1.5<=k+a:
+    MP = MP * 1.2
+if kp < 0.5 and d*1.5>k+a:
+    MP = MP * 1.15
+if gmp > 325:
+    MP= MP*1.15
+if mc >=0.5:
+    MP = MP*1.1
+MP += hg * 0.5
+MP = round(MP)
+print("Вы получили", MP, "очков мастерства")
+if d > 3*k+a:
+    print("Поздравляем, вы-настоящий Хасаги")
